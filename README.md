@@ -99,5 +99,3 @@ The Paint app performs the following steps:
 - Run inference using the CNN model (trained_model.h5)
 
 - Display the predicted digit in the GUI
-
-<p align="center"> <img src="https://github.com/microsoft/ML-For-Beginners/raw/main/3-Web-App/1-Web-App/images/digit-prediction.png" width="500" alt="Digit prediction demo"/> </p>
