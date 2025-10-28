@@ -1,19 +1,37 @@
-# 🧠 Digit Classification using CNN
+# 🎨 Digit Classification & Paint Application (Keras + Tkinter)
 
-A simple **Convolutional Neural Network (CNN)** built with **Keras** to classify handwritten digits from the **MNIST dataset**.  
-This project demonstrates a basic deep learning pipeline — from data preprocessing to model training, evaluation, and saving.
-
----
-
-## 🚀 Overview
-
-This project trains a CNN model to recognize digits (0–9) using the **MNIST dataset**, which contains 70,000 grayscale images of handwritten digits (28x28 pixels).
-
-The model achieves over **98% accuracy** after just a few epochs of training.
+A complete project that combines **deep learning** and **GUI development** — featuring a **Convolutional Neural Network (CNN)** trained on **MNIST** for handwritten digit recognition, and a **Tkinter-based Paint App** that allows users to draw digits and get live predictions.
 
 ---
 
-## 🧩 Model Architecture
+## 🧠 Overview
+
+This project demonstrates a full end-to-end digit recognition pipeline:
+
+1. **Train a CNN model** on the MNIST dataset using Keras/TensorFlow.  
+2. **Save and reuse the model** for predictions.  
+3. **Create a Paint GUI** where users can draw digits and get them classified by the trained model in real-time.  
+
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/MnistExamples.png" width="400"/>
+</p>
+
+---
+
+## 🧩 Project Structure
+```yaml
+├── trained_model.h5 # Saved CNN model
+├── digit_CNNClassification.py # CNN training script
+├── paint.py # Paint and prediction GUI app
+├── Data/
+│ ├── paint.ico # App icon
+│ ├── image0.png # Saved drawings
+│ └── ...
+└── README.md
+```
+---
+
+## ⚙️ CNN Model Summary
 
 | Layer Type | Parameters | Activation |
 |-------------|-------------|-------------|
@@ -22,22 +40,64 @@ The model achieves over **98% accuracy** after just a few epochs of training.
 | Flatten | — | — |
 | Dense | 10 units | Softmax |
 
----
-
-## ⚙️ How It Works
-
-1. **Load the MNIST dataset**  
-   The dataset is split into training and testing sets.  
-2. **Reshape and normalize the data**  
-   Input images are reshaped to `(28, 28, 1)` and scaled between `0–1`.  
-3. **One-hot encode labels**  
-   Converts numeric labels (0–9) into categorical vectors.  
-4. **Build and compile the CNN**  
-   Using `adam` optimizer and `categorical_crossentropy` loss.  
-5. **Train the model**  
-   For 3 epochs using both training and validation data.  
-6. **Evaluate and save the model**  
-   The final model is saved as `trained_model.h5`.
+The model achieves an accuracy of **~98%** on the MNIST test set.
 
 ---
 
+## 🚀 Training the CNN Model
+
+Run the training script to build and save the model:
+
+```bash
+python train_model.py
+```
+The script performs:
+
+- Dataset loading and preprocessing
+
+- Model definition and compilation
+
+- Training for 3 epochs
+
+- Evaluation and saving (trained_model.h5)
+
+You’ll see outputs like:
+
+```yaml
+Test loss: 0.06
+Test accuracy: 0.98
+Model saved successfully..
+```
+
+## 🖌️ Paint Application (Digit Classifier GUI)
+Once your model is trained and saved as trained_model.h5, you can launch the Paint app:
+
+```bash
+python paint.py
+```
+This opens a Tkinter-based GUI where you can:
+
+- Draw digits with your mouse
+
+- Adjust brush size
+
+- Change pen and background colors
+
+- Clear the canvas
+
+- Save your drawings
+
+- Get instant predictions for drawn digits
+
+## 🧠 Prediction Pipeline
+The Paint app performs the following steps:
+
+- Save your drawing as an image (e.g. image0.png)
+
+- Preprocess it
+
+- Run inference using the CNN model (trained_model.h5)
+
+- Display the predicted digit in the GUI
+
+<p align="center"> <img src="https://github.com/microsoft/ML-For-Beginners/raw/main/3-Web-App/1-Web-App/images/digit-prediction.png" width="500" alt="Digit prediction demo"/> </p>
